@@ -1,7 +1,7 @@
 package brain.core.servises;
 
 import brain.core.dto.UserDto;
-import brain.core.mappers.UserDtoMapper;
+import brain.core.mappers.UserMapper;
 import brain.core.role.Role;
 import brain.core.models.UserModel;
 import brain.core.repos.UserModelRepository;
@@ -15,14 +15,12 @@ import java.util.List;
 public class AdminServiceImplements implements AdminService {
 
     private final UserModelRepository userRepository;
-    private final UserDtoMapper userMapper;
+    private final UserMapper userMapper;
 
     @Override
     public UserDto addNewUser(String name, String secondName, String email, String password, String phone, Role role) {
         UserModel userModel = userRepository.save(
                 new UserModel(
-                        null,
-                        name,
                         secondName,
                         email,
                         password,
@@ -36,20 +34,48 @@ public class AdminServiceImplements implements AdminService {
     @Override
     public List<UserDto> getAllUsers() {
         return userRepository.findAll().stream()
-                .map(UserModel::toDto)
+                .map(userMapper::toDto)
                 .toList();
     }
 
 
 
     @Override
-    public void updateUser(Long id, String name, String secondName, String email, String password, String phone, Role role) {
+    public UserDto updateUser(Long id, String name, String secondName, String email, String password, String phone , Role role) {
+        UserModel updatedUsersModel = userRepository
+                .findById(id)
+                .orElseThrow();
+
+        if (updatedUsersModel.getId() == null) {
+            throw new IllegalArgumentException(("User id not found"));
+        }
+        updatedUsersModel.setId(id);
+        updatedUsersModel.setName(name);
+        updatedUsersModel.setSecondName(secondName);
+        updatedUsersModel.setEmail(email);
+        updatedUsersModel.setPassword(password);
+        updatedUsersModel.setRole(role);
+        userRepository.save(
+                updatedUsersModel
+        );
+        return userMapper.toDto(updatedUsersModel);
 
     }
 
     @Override
     public void deleteUser(Long id) {
+        userRepository.deleteById(id);
 
     }
+
+    @Override
+    public UserDto getUserById(Long id) {
+        UserModel usermodel = userRepository.findUserModelById(id);
+
+        return userMapper.toDto(usermodel);
+
+
+    }
+
 }
 

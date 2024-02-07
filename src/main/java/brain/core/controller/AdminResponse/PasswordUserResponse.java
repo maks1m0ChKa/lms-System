@@ -1,4 +1,4 @@
-package brain.core.controller.UserResponse;
+package brain.core.controller.AdminResponse;
 //получаю пароль юзера
 public class PasswordUserResponse {
 }

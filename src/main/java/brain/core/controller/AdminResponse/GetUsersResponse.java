@@ -1,4 +1,4 @@
-package brain.core.controller.UserResponse;
+package brain.core.controller.AdminResponse;
 
 import brain.core.dto.UserDto;
 import lombok.AllArgsConstructor;

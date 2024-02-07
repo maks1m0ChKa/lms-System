@@ -1,5 +1,6 @@
 package brain.core.models;
 
+import brain.abstraktClasses.BaseModel;
 import brain.core.role.Role;
 import brain.core.dto.TeacherDto;
 import jakarta.persistence.*;
@@ -13,38 +14,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name="teacher")
-public class TeacherModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class TeacherModel extends BaseModel {
 
-    @Column(name = "user-name",nullable = false)
-    private String name;
 
-    @Column(name ="second-name", nullable = false)
+    @Column(name = "second-name", nullable = false)
     private String secondName;
 
-    @Column(name ="email" ,nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name ="password" ,nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name ="phone" ,nullable = false)
+    @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name ="role" ,nullable = false)
+    @Column(name = "role", nullable = false)
     private Role role;
-
-    public TeacherDto toDto(){
-        return new TeacherDto(
-                this.id,
-                this.name,
-                this.secondName,
-                this.email,
-                this.password,
-                this.phone,
-                this.role
-        );
-    }
 }
+

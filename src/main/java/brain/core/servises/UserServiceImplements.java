@@ -15,14 +15,4 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImplements implements UserService {
 
-
-    @Override
-    public void deleteUser(Long id) {
-
-    }
-
-    @Override
-    public void updateUser(Long id, String name, String secondName, String email, String password, String phone, Role role){
-
-    }
 }

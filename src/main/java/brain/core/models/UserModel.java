@@ -1,8 +1,8 @@
 package brain.core.models;
 //создаю параметры + автоматическое создание таблицы в бд.
 
+import brain.abstraktClasses.BaseModel;
 import brain.core.role.Role;
-import brain.core.dto.UserDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,13 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class UserModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "user-name", nullable = false)
-    private String name;
+public class UserModel extends BaseModel {
 
     @Column(name ="second-name", nullable = false)
     private String secondName;
@@ -39,15 +33,5 @@ public class UserModel {
     @Column(name ="role" ,nullable = false)
     private Role role;
 
-    public UserDto toDto(){
-        return new UserDto(
-                this.id,
-                this.name,
-                this.secondName,
-                this.email,
-                this.password,
-                this.phone,
-                this.role
-            );
-    }
+
 }

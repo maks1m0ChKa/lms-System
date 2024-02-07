@@ -1,5 +1,6 @@
 package brain.core.models;
 
+import brain.abstraktClasses.BaseModel;
 import brain.core.dto.AdminDto;
 import brain.core.role.Role;
 import jakarta.persistence.*;
@@ -15,14 +16,8 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class AdminModel {
+public class AdminModel extends BaseModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "user-name", nullable = false)
-    private String name;
 
     @Column(name ="second-name", nullable = false)
     private String secondName;

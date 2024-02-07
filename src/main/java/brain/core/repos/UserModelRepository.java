@@ -4,6 +4,8 @@ import brain.core.role.Role;
 import brain.core.models.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface UserModelRepository extends JpaRepository<UserModel,Long> {
    // UserModel findFirstByName(String name);
     // UserModel findFirstByEmailAndPassword(String email, String password);
@@ -12,6 +14,7 @@ public interface UserModelRepository extends JpaRepository<UserModel,Long> {
 
     UserModel findByRole(Role role);
 
+    UserModel findUserModelById(Long id);
 
     //есди методы не заработают то переписываю их шаблоны сюда ии заебись)
 }
